@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Form from './Form';
 
 export default function Diary () {
 
@@ -6,13 +7,7 @@ export default function Diary () {
 
     return(
         <div>
-            <form>
-                <label>
-                    Name:
-                    <input type="text" name="name" />
-                </label>
-                <input type="submit" value="Submit" />
-            </form>
+           <Form /> 
         </div>
     )
 }
