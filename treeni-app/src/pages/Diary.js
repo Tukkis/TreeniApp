@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
-import Form from './Form';
+import React from 'react';
+import Calendar from '../components/Calendar';
 
-export default function Diary () {
+export default function Diary ({ trainingData }) {
 
-    const [ action, setAction ] = useState(0);
-
+    console.log(trainingData)
     return(
         <div>
-           <Form /> 
+           <Calendar trainingData={trainingData} />
         </div>
     )
 }

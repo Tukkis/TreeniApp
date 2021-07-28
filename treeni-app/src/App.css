@@ -18,11 +18,11 @@ body{
 
 /* Login */
 
-#login-component{
+.user-component{
   padding: 10px;
 }
 
-#login-component > h1 {
+.user-component > h1 {
   text-align: center;
 }
 
@@ -40,4 +40,15 @@ body{
   text-decoration: 0;
   padding: 5px;
   margin: 10px;
+}
+
+/* Diary */
+
+.left-component{
+  width: 50%;
+  margin: 25px 0 0 25px;
+}
+
+.react-calendar{
+  margin: 0;
 }

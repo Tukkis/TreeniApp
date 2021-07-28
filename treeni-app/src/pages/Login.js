@@ -1,7 +1,7 @@
 export default function Login ({ authenticate }) {
     return(
         <div className="user-wrapper">
-            <div id="login-component">
+            <div className="user-component">
                 <h1>Login</h1>
                 <form>
                     <label>
