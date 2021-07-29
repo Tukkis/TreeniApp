@@ -6,7 +6,6 @@ export default function MyCalendar ({ trainingData }) {
     const [ value, onChange ] = useState(new Date());
 
     function datesAreOnSameDay (first, second) {
-        first = first.date
         let returnValue = false;
         if(first.getFullYear() === second.getFullYear() &&
         first.getMonth() === second.getMonth() &&
@@ -19,8 +18,14 @@ export default function MyCalendar ({ trainingData }) {
     function markDays(date){
         let returnValue = '';
         const day = new Date();
-        if (datesAreOnSameDay(date, day)){
-            returnValue = "today"
+        let dateKey = date.date.getDate() + '.' + date.date.getMonth() + '.' + date.date.getFullYear()
+        console.log(dateKey)
+        if (datesAreOnSameDay(date.date, day)){
+            returnValue = "today";
+        }
+        if(trainingData.hasOwnProperty((dateKey.toString()))){
+            returnValue += " marked-date";
+            console.log('!')
         }
         return returnValue
     }

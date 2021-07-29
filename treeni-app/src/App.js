@@ -14,17 +14,18 @@ import Diary from './pages/Diary';
 
 function App() {
 
-  const [ isAuthenticated, setAuthentication ] = useState(false);
+  const [ isAuthenticated, setAuthentication ] = useState(true);
 
 
   /* Haetaan backendistä kyseisen kuukauden harjoitukset ja niiden id:t */  
-  const dateData = {
+  const [ dateData, setDateData ] = useState({
       "Fri Sep 17 2021 00:00:00 GMT+0300" : 1,
       "Sat Sep 18 2021 00:00:00 GMT+0300" : 2 
-    }
+    })
+
   /* Haetaan id:n perusteella harjoituksen data */  
-  const trainingData = {
-    1: {
+  const [ trainingData, setTrainingData ] = useState({
+    "27.6.2021": {
       "Warm-up": {
         "20 min": "1x"
       },
@@ -33,7 +34,7 @@ function App() {
         "10x": "25kg"
       }
     },
-    2: {
+    "29.6.2021": {
       "Warm-up": {
         "15 min": "1x"
       },
@@ -42,7 +43,7 @@ function App() {
         "5x": "90kg"
       }
     }
-  }
+  })
 
   function authenticate (e) {
     e.preventDefault()

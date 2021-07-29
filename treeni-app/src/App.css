@@ -52,3 +52,11 @@ body{
 .react-calendar{
   margin: 0;
 }
+
+.today{
+  font-weight: bold;
+}
+
+.marked-date{
+  background-color: red;
+}
