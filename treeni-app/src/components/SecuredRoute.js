@@ -7,7 +7,7 @@ import {
 function SecuredRoute(props){
     return(
       <Route path={props.path} render={data=>props.isAuthenticated?(
-        <props.component {...data} trainingData={props.trainingData}></props.component>):
+        <props.component {...data}></props.component>):
         (<Redirect to={{pathname:'/login'}}></Redirect>)}></Route>
         )
 }

@@ -11,39 +11,13 @@ import Header from './components/Header';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Diary from './pages/Diary';
+import AddNew from './pages/AddNew';
+import Profile from './pages/Profile';
+import Stats from './pages/Statistics'
 
 function App() {
 
   const [ isAuthenticated, setAuthentication ] = useState(true);
-
-
-  /* Haetaan backendistä kyseisen kuukauden harjoitukset ja niiden id:t */  
-  const [ dateData, setDateData ] = useState({
-      "Fri Sep 17 2021 00:00:00 GMT+0300" : 1,
-      "Sat Sep 18 2021 00:00:00 GMT+0300" : 2 
-    })
-
-  /* Haetaan id:n perusteella harjoituksen data */  
-  const [ trainingData, setTrainingData ] = useState({
-    "27.6.2021": {
-      "Warm-up": {
-        "20 min": "1x"
-      },
-      "Barbell-row": {
-        "10x": "20kg",
-        "10x": "25kg"
-      }
-    },
-    "29.6.2021": {
-      "Warm-up": {
-        "15 min": "1x"
-      },
-      "Bench press": {
-        "10x": "80kg",
-        "5x": "90kg"
-      }
-    }
-  })
 
   function authenticate (e) {
     e.preventDefault()
@@ -53,7 +27,7 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Header />
+        <Header isAuthenticated={isAuthenticated} />
         <Redirect to={{pathname:'/login'}}></Redirect>
         <Switch>
           <Route path="/login">
@@ -66,9 +40,23 @@ function App() {
           path="/diary" 
           component={Diary} 
           isAuthenticated={isAuthenticated}
-          trainingData={trainingData}
           >
           </SecuredRoute>
+          <SecuredRoute
+          path="/new"
+          component={AddNew}
+          isAuthenticated={isAuthenticated}
+          ></SecuredRoute>
+          <SecuredRoute
+          path="/statistics"
+          component={Stats}
+          isAuthenticated={isAuthenticated}
+          ></SecuredRoute>
+          <SecuredRoute
+          path="/profile"
+          component={Profile}
+          isAuthenticated={isAuthenticated}
+          ></SecuredRoute>
         </Switch>
       </Router>
     </div>

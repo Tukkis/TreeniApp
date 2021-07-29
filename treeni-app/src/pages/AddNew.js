@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 
-export default function Form () {
+export default function AddNew () {
     
-    const [ formValue, setFormValue ] = useState(null)
     const [ value, setValue ] = useState('')
 
     function handleChange(e){
