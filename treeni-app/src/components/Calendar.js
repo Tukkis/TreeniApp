@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import Calendar from 'react-calendar';
 
-export default function MyCalendar ({ trainingData }) {
-
-    const [ value, onChange ] = useState(new Date());
+export default function MyCalendar ({ trainingData, handleDayClick, calendarDate, calendarDateChange }) {
 
     function datesAreOnSameDay (first, second) {
         let returnValue = false;
@@ -18,14 +16,12 @@ export default function MyCalendar ({ trainingData }) {
     function markDays(date){
         let returnValue = '';
         const day = new Date();
-        let dateKey = date.date.getDate() + '.' + date.date.getMonth() + '.' + date.date.getFullYear()
-        console.log(dateKey)
+        let dateKey = date.date.getFullYear() + '-' + (date.date.getMonth() < 10 ? '0' + date.date.getMonth() : date.date.getMonth()) + '-' + date.date.getDate();
         if (datesAreOnSameDay(date.date, day)){
             returnValue = "today";
         }
         if(trainingData.hasOwnProperty((dateKey.toString()))){
             returnValue += " marked-date";
-            console.log('!')
         }
         return returnValue
     }
@@ -34,10 +30,11 @@ export default function MyCalendar ({ trainingData }) {
         <div className="left-component">
             <Calendar
             className={"react-calendar"}
-            onChange={onChange}
-            value={value}
+            onChange={calendarDateChange}
+            value={calendarDate}
             view={"month"}
             tileClassName={(date) => markDays(date)}
+            onClickDay={(date, e) => handleDayClick(e,date)}
              />
         </div>
     )
