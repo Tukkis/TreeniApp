@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Calendar from '../components/Calendar';
 import DateTooltip from '../components/DateTooltip';
 
-export default function Diary () {
+export default function Diary ({ calendarDate, calendarDateChange }) {
     
     const [ tooltipStyles, setTooltipStyles ] = useState({
       width: 0,
@@ -12,8 +12,6 @@ export default function Diary () {
     })
   
     const [ tooltipContent, setTooltipContent ] = useState('')
-
-    const [ calendarDate, calendarDateChange ] = useState(new Date());
 
     const [ trainingData, setTrainingData ] = useState({
       "2021-06-27": {

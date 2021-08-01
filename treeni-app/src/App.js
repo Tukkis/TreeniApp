@@ -19,6 +19,7 @@ function App() {
 
   const [ isAuthenticated, setAuthentication ] = useState(true);
 
+  
   function authenticate (e) {
     e.preventDefault()
     setAuthentication(true)
