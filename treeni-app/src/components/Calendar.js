@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Calendar from 'react-calendar';
 
 export default function MyCalendar ({ trainingData, handleDayClick, calendarDate, calendarDateChange }) {
