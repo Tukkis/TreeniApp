@@ -1,6 +1,6 @@
 # TreeniApp
 Treeni app
 
-Cd to treeni-app
-Npm install
-Npm start
+Cd to treeni-app</br>
+Npm install</br>
+Npm start</br>
