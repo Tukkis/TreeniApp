@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import ExcercisesDropdown from '../components/TrainingsDropdown';
+import ExcercisesDropdown from '../components/ExcercisesDropdown';
 
 export default function AddNew ({ calendarDate }) {
     
@@ -45,14 +45,19 @@ export default function AddNew ({ calendarDate }) {
     
     useEffect(() => {
         handleExcercises(1, 'init')
-      }, [])
+    }, [])
 
     return (
         <div>
             <form onSubmit={handleSubmit}>
+                <input type="date" name="add-date" onChange={(e) => handleChange(e)} value={calendarDate.getFullYear() + '-' + (calendarDate.getMonth() < 10 ? '0' + calendarDate.getMonth() : calendarDate.getMonth()) + '-' + (calendarDate.getDate() < 10 ? '0' + calendarDate.getDate() : calendarDate.getDate())}></input>
                 {excercises}
             </form>
             <button onClick={() => handleExcercises(1,'add')}>+</button>
+            <div className="confirm-add">
+                <h3>Add to diary</h3>
+                <button>confirm</button>
+            </div>
         </div>
     )
 }

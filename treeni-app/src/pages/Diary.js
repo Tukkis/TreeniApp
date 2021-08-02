@@ -5,6 +5,7 @@ import DateTooltip from '../components/DateTooltip';
 export default function Diary ({ calendarDate, calendarDateChange }) {
     
     const [ tooltipStyles, setTooltipStyles ] = useState({
+      height  : 0,
       width: 0,
       top: 0,
       left: 0,
@@ -36,9 +37,10 @@ export default function Diary ({ calendarDate, calendarDateChange }) {
 
     function handleTooltipStyleChange(target){
       const copy = {...tooltipStyles};
-      copy.left = target.offsetLeft + (target.offsetWidth - (target.offsetWidth * 1.2)) / 2 + 'px';
+      copy.left = target.classList.contains('marked-date') ? target.offsetLeft + (target.offsetWidth - (target.offsetWidth * 2.4)) / 2 + 'px' : target.offsetLeft + (target.offsetWidth - (target.offsetWidth * 1.2)) / 2 + 'px';
       copy.top = target.offsetTop + target.offsetHeight + 'px';
-      copy.width = (target.offsetWidth * 1.2) + 'px';
+      copy.width = target.classList.contains('marked-date') ? (target.offsetWidth * 2.4) + 'px' : (target.offsetWidth * 1.2) + 'px';
+      copy.height = target.classList.contains('marked-date') ? '200px' : '100px';
       copy.display = 'block';
       setTooltipStyles(copy)
     }
@@ -49,9 +51,22 @@ export default function Diary ({ calendarDate, calendarDateChange }) {
       if (target.classList.length < 1) {
         target = e.target.parentElement;
       }
+      let dateKey = date.getFullYear() + '-' + (date.getMonth() < 10 ? '0' + date.getMonth() : date.getMonth()) + '-' + date.getDate();
+      if(trainingData.hasOwnProperty((dateKey.toString()))){
+        let copy = '<div>';
+        for (const [excercise, sets] of Object.entries(trainingData[dateKey])) {
+          copy += `<h3>${excercise}</h3><ul>`;
+          for (const [set, resistance] of Object.entries(sets)) {
+            copy += `<li>${set} -- ${resistance}</li>`
+          }
+          copy += '</ul>'
+        }
+        copy += '</div>'
+        setTooltipContent(copy)
+      } else {
+        setTooltipContent('<h4>' + (date.getDate() < 10 ? '0' + date.getDate() : date.getDate()) + '.' + (date.getMonth() < 10 ? '0' + date.getMonth() : date.getMonth()) + '.' + date.getFullYear() + '</h4>')
+      }
       handleTooltipStyleChange(target)
-      console.log(date)
-      setTooltipContent((date.getDate() < 10 ? '0' + date.getDate() : date.getDate()) + '.' + (date.getMonth() < 10 ? '0' + date.getMonth() : date.getMonth()) + '.' + date.getFullYear())
     }
       
     return(

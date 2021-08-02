@@ -57,6 +57,7 @@ function App() {
           path="/profile"
           component={Profile}
           isAuthenticated={isAuthenticated}
+          setAuthentication={setAuthentication}
           ></SecuredRoute>
         </Switch>
       </Router>

@@ -1,9 +1,9 @@
 import React from 'react';
 
-export default function Profile () {
+export default function Profile ({ setAuthentication }) {
     return(
         <div>
-            Profile
+            <button onClick={() => setAuthentication(false)}>Log out</button>
         </div>
     )
 }
