@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
+// Sets dropdown for Excewrcise dropdown
+
 export default function SetsDropdown ({ setIndex, componentsExcercise }) {
 
     const [ possibleResistances, setPossibleResistances ] = useState([])

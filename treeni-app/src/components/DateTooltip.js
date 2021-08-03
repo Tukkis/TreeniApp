@@ -4,6 +4,8 @@ import {
     Link
   } from "react-router-dom";
 
+// Date tooltip for calendar
+
 export default function DateTooltip ({ tooltipStyles, tooltipContent }) {
     return (
         <div id="date-tooltip" style={tooltipStyles}>

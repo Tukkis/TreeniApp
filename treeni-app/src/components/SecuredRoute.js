@@ -4,6 +4,8 @@ import {
     Redirect
 } from "react-router-dom";
 
+// Routes that need authentication
+
 function SecuredRoute(props){
 
   const [ calendarDate, calendarDateChange ] = useState(new Date());

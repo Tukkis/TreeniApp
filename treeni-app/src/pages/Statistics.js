@@ -10,6 +10,8 @@ import {
   } from "recharts";
 import StatsDropdowns from '../components/StatsDropdowns';
 
+// stats Route
+
 export default function Stats () {
 
     const [ chartXFormat, setChartXFormat ] = useState('week');

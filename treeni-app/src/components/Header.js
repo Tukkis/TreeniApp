@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+// Header component
+
 export default function Header ({ isAuthenticated }) {
     if(!isAuthenticated){
         return (

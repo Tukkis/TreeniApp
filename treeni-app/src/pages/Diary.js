@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import Calendar from '../components/Calendar';
 import DateTooltip from '../components/DateTooltip';
 
+// Diary Route
+
 export default function Diary ({ calendarDate, calendarDateChange }) {
     
     const [ tooltipStyles, setTooltipStyles ] = useState({

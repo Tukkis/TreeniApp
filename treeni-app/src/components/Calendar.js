@@ -1,6 +1,8 @@
 import React from 'react';
 import Calendar from 'react-calendar';
 
+//Calendar component for diary route
+
 export default function MyCalendar ({ trainingData, handleDayClick, calendarDate, calendarDateChange }) {
 
     function datesAreOnSameDay (first, second) {

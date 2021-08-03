@@ -1,6 +1,7 @@
 import React,{ useState, useEffect } from 'react';
 import SetsDropdown from './SetsDropdown';
 
+// Dropdown for Add new
 
 export default function ExcercisesDropdown ({ excerciseIndex, handleExcercises }) {
     

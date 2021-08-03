@@ -1,5 +1,7 @@
 import React from 'react';
 
+//Stats dropdown for Statistics Route
+
 export default function StatsDropdowns ({ handleXFormat, handleYFormat }) {
     return(
         <div className="stats-dropdowns">
