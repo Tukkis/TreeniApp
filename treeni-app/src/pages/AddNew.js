@@ -13,9 +13,10 @@ export default function AddNew ({ calendarDate }) {
 
     const [ excercises, setExcercises ] = useState([
         {
-            excerciseIndex:1,
+            excerciseIndex: 0,
             componentsExcercise: '',
             componentsSets: [{
+                setIndex: 0,
                 reps: '',
                 resistance: ''
             }]
@@ -39,24 +40,65 @@ export default function AddNew ({ calendarDate }) {
             copy = [...excercises]
         }
         if (operation === 'remove'){
-            copy.push()
+            // When removing an excerciseDropdown
+            copy = copy.filter(excercise => excercise.excerciseIndex !== i)
+        } else if (operation === 'add') {
+            // When adding an excerciseDropdown
+            copy.push({
+                excerciseIndex: copy[copy.length - 1].excerciseIndex + 1,
+                componentsExcercise: '',
+                componentsSets: [{
+                    setIndex: 0,
+                    reps: '',
+                    resistance: ''
+                }]
+            })
+        } else if (operation === 'addSet') {
+            // When adding a set to excerciseDropdown
+            for (let index in copy){
+                if (copy[index].excerciseIndex === i) {
+                    copy[index].componentsSets.push({
+                        setIndex: copy[index].componentsSets.length,
+                        reps: '',
+                        resistance: ''
+                    })
+                }
+            }   
+        } else if(operation.length === 2) {
+            // When modifying an excerciseDropdown, operation is [key, value], where key is key in excercise states object and value is the new value assigned to that key
+            for (let index in copy) {
+                if (copy[index].excerciseIndex === i) {
+                   copy[i][operation[0]] = operation[1];
+                   break;
+                }
+            }
         } else {
-            console.log(copy)
-            /* console.log(copy)
-            let arr = copy.map(elem => elem.props.excerciseIndex !== i ? elem : '');
-            console.log(arr) */
+            // When modifying an excerciseDropdowns set, operation is [setIndex, key, value], where key is key in excercise states object and value is the new value assigned to that key
+            for (let exIndex in copy) {
+                if (copy[exIndex].excerciseIndex === i) {
+                    for (let seIndex in copy[exIndex].componentsSets) {
+                        console.log(copy[exIndex].componentsSets[seIndex])
+                        if (copy[exIndex].componentsSets[seIndex].setIndex === operation[0]) {
+                            copy[exIndex].componentsSets[seIndex][operation[1]] = operation[2];
+                            break;
+                        }
+                    }   
+                }
+            }
         }
+        console.log(copy)
+
         setExcercises(copy)
     }
 
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
+        <div className="left-component">
+            <form id="add-excercises-form" onSubmit={handleSubmit}>
                 <input type="date" name="add-date" onChange={(e) => handleChange(e)} value={calendarDate.getFullYear() + '-' + (calendarDate.getMonth() < 10 ? '0' + calendarDate.getMonth() : calendarDate.getMonth()) + '-' + (calendarDate.getDate() < 10 ? '0' + calendarDate.getDate() : calendarDate.getDate())}></input>
-                {excercises.map(excercise => <ExcercisesDropdown excerciseIndex={excercise.excerciseIndex} key={excercise.excerciseIndex} handleExcercises={handleExcercises} />)}
+                {excercises.map(excercise => <ExcercisesDropdown componentsSets={excercise.componentsSets} componentsExcercise={excercise.componentsExcercise} excerciseIndex={excercise.excerciseIndex} key={excercise.excerciseIndex} handleExcercises={handleExcercises} />)}
             </form>
-            <button onClick={() => handleExcercises(1,'add')}>+</button>
+            <button onClick={() => handleExcercises(1,'add')}>Add excercise</button>
             <div className="confirm-add">
                 <h3>Add to diary</h3>
                 <button>confirm</button>

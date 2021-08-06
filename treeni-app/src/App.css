@@ -149,3 +149,26 @@ ul{
   align-items: center;
   font-size: 3em;
 }
+
+/* Add New */
+
+#add-excercises-form{
+  margin-bottom: 5px;
+}
+
+.excercise-dropdown{
+  border: 1px solid black;
+  margin-top: 5px;
+  padding: 10px;
+}
+
+.excercise-dropdown-top{
+  display: grid;
+  grid-template-columns: 5fr 1fr;
+  width: 50%;
+}
+
+.set-dropdown{
+  margin: 10px;
+}
+
