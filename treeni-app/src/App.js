@@ -15,6 +15,10 @@ import AddNew from './pages/AddNew';
 import Profile from './pages/Profile';
 import Stats from './pages/Statistics'
 
+
+// Training diary using react-calendar and recharts component dictionaries. 
+// Will be connected to backend
+
 function App() {
 
   const [ isAuthenticated, setAuthentication ] = useState(true);
