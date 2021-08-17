@@ -14,7 +14,12 @@ export default function Diary ({ calendarDate, calendarDateChange }) {
       display: 'none'
     })
   
-    const [ tooltipContent, setTooltipContent ] = useState('')
+    const [ tooltipContent, setTooltipContent ] = useState({
+      date: '',
+      excercise:'',
+      set:'',
+      resistance:''
+    })
 
     const [ trainingData, setTrainingData ] = useState({
       "2021-06-27": {
@@ -54,20 +59,22 @@ export default function Diary ({ calendarDate, calendarDateChange }) {
         target = e.target.parentElement;
       }
       let dateKey = date.getFullYear() + '-' + (date.getMonth() < 10 ? '0' + date.getMonth() : date.getMonth()) + '-' + date.getDate();
-      if(trainingData.hasOwnProperty((dateKey.toString()))){
-        let copy = '<div>';
-        for (const [excercise, sets] of Object.entries(trainingData[dateKey])) {
-          copy += `<h3>${excercise}</h3><ul>`;
-          for (const [set, resistance] of Object.entries(sets)) {
-            copy += `<li>${set} -- ${resistance}</li>`
-          }
-          copy += '</ul>'
-        }
-        copy += '</div>'
-        setTooltipContent(copy)
-      } else {
-        setTooltipContent('<h4>' + (date.getDate() < 10 ? '0' + date.getDate() : date.getDate()) + '.' + (date.getMonth() < 10 ? '0' + date.getMonth() : date.getMonth()) + '.' + date.getFullYear() + '</h4>')
+      let copy = {
+        date: dateKey,
+        excercise:'',
+        set:'',
+        resistance:''
       }
+      if(trainingData.hasOwnProperty((dateKey.toString()))){
+        for (const [excercise, sets] of Object.entries(trainingData[dateKey])) {
+          copy.excercise = excercise;
+          for (const [set, resistance] of Object.entries(sets)) {
+            copy.set = set;
+            copy.resistance = resistance;
+          }
+        }
+      } 
+      setTooltipContent(copy)
       handleTooltipStyleChange(target)
     }
       

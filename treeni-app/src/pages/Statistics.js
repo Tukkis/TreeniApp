@@ -150,22 +150,24 @@ export default function Stats () {
     }
 
     return(
-        <div id="statistics-component">
-          <div className="line-component">
-              <ResponsiveContainer aspect={3}>
-                <LineChart
-                  width={500}
-                  height={300}
-                  data={chartData}
-                >
-                  <CartesianGrid  stroke="#eee" strokeDasharray="5 5"/>
-                  <XAxis dataKey="date" />
-                  <YAxis />
-                  <Tooltip contentStyle={{ backgroundColor: "white", color: "red" }} itemStyle={{ color: "red" }} cursor={false}/>
-                  <Line type="monotone" dataKey="activity" stroke="red" strokeWidth="5" dot={{fill:"#2e4355",stroke:"red",strokeWidth: 2,r:5}} activeDot={{fill:"#2e4355",stroke:"#8884d8",strokeWidth: 5,r:10}} />
-                  
-                </LineChart>
-              </ResponsiveContainer>
+        <div className="left-component">
+          <div id="statistics-component">
+            <div className="line-component">
+                <ResponsiveContainer aspect={3}>
+                  <LineChart
+                    width={500}
+                    height={300}
+                    data={chartData}
+                  >
+                    <CartesianGrid  stroke="#eee" strokeDasharray="5 5"/>
+                    <XAxis dataKey="date" />
+                    <YAxis />
+                    <Tooltip contentStyle={{ backgroundColor: "white", color: "red" }} itemStyle={{ color: "red" }} cursor={false}/>
+                    <Line type="monotone" dataKey="activity" stroke="red" strokeWidth="5" dot={{fill:"#2e4355",stroke:"red",strokeWidth: 2,r:5}} activeDot={{fill:"#2e4355",stroke:"#8884d8",strokeWidth: 5,r:10}} />
+                    
+                  </LineChart>
+                </ResponsiveContainer>
+            </div>
           </div>
           <StatsDropdowns handleXFormat={handleXFormat} handleYFormat={handleYFormat} />
         </div>

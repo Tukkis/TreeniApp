@@ -14,7 +14,7 @@ export default function ExcercisesDropdown ({ componentsSets ,componentsExcercis
                 <option value="Pull_up">Pull up</option>
                 <option value="Warm_up">Warm up</option>
             </select>
-            <button onClick={function(e) {
+            <button className="delete-excercise-button" onClick={function(e) {
                 e.preventDefault()  
                 handleExcercises(excerciseIndex, 'remove')
                 }

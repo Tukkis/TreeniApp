@@ -45,7 +45,7 @@ export default function AddNew ({ calendarDate }) {
         } else if (operation === 'add') {
             // When adding an excerciseDropdown
             copy.push({
-                excerciseIndex: copy[copy.length - 1].excerciseIndex + 1,
+                excerciseIndex: copy.length > 0 ? copy[copy.length - 1].excerciseIndex + 1 : 0,
                 componentsExcercise: '',
                 componentsSets: [{
                     setIndex: 0,
@@ -94,14 +94,16 @@ export default function AddNew ({ calendarDate }) {
 
     return (
         <div className="left-component">
-            <form id="add-excercises-form" onSubmit={handleSubmit}>
-                <input type="date" name="add-date" onChange={(e) => handleChange(e)} value={calendarDate.getFullYear() + '-' + (calendarDate.getMonth() < 10 ? '0' + calendarDate.getMonth() : calendarDate.getMonth()) + '-' + (calendarDate.getDate() < 10 ? '0' + calendarDate.getDate() : calendarDate.getDate())}></input>
-                {excercises.map(excercise => <ExcercisesDropdown componentsSets={excercise.componentsSets} componentsExcercise={excercise.componentsExcercise} excerciseIndex={excercise.excerciseIndex} key={excercise.excerciseIndex} handleExcercises={handleExcercises} />)}
-            </form>
-            <button onClick={() => handleExcercises(1,'add')}>Add excercise</button>
-            <div className="confirm-add">
-                <h3>Add to diary</h3>
-                <button>confirm</button>
+            <div>
+                <form id="add-excercises-form" onSubmit={handleSubmit}>
+                    <input type="date" name="add-date" onChange={(e) => handleChange(e)} value={calendarDate.getFullYear() + '-' + (calendarDate.getMonth() < 10 ? '0' + calendarDate.getMonth() : calendarDate.getMonth()) + '-' + (calendarDate.getDate() < 10 ? '0' + calendarDate.getDate() : calendarDate.getDate())}></input>
+                    {excercises.map(excercise => <ExcercisesDropdown componentsSets={excercise.componentsSets} componentsExcercise={excercise.componentsExcercise} excerciseIndex={excercise.excerciseIndex} key={excercise.excerciseIndex} handleExcercises={handleExcercises} />)}
+                </form>
+                <button onClick={() => handleExcercises(1,'add')}>Add excercise</button>
+                <div className="confirm-add">
+                    <h3>Add to diary</h3>
+                    <button>confirm</button>
+                </div>
             </div>
         </div>
     )
